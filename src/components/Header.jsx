@@ -1,16 +1,28 @@
 import NuevoPresupuesto from './NuevoPresupuesto'
 
 
-const Header = ({presupuesto, setPresupuesto}) => {
-
+const Header = ({
+    presupuesto, 
+    setPresupuesto, 
+    IsvalidPresupuesto, 
+    setIsValidPresupuesto
+}) => {
+    
   return (
     <header>
       <h1>Planificacion de Gastos</h1>
 
-      <NuevoPresupuesto 
-        presupuesto={presupuesto}
-        setPresupuesto={setPresupuesto}
-      />
+      {IsvalidPresupuesto ? (
+        <p>Control Presupuesto</p>
+      ) : (
+            <NuevoPresupuesto 
+                presupuesto={presupuesto}
+                setPresupuesto={setPresupuesto}
+                setIsValidPresupuesto={setIsValidPresupuesto}
+            />
+      )}
+
+
     </header>
   )
 }
