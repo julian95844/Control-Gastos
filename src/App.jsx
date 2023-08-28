@@ -7,7 +7,7 @@ import IconoNuevoGasto from './img/nuevo-gasto.svg'
 function App() {
   
   const [presupuesto, setPresupuesto] = useState(0)
-  const [IsValidPresupuesto, setIsValidPresupuesto] = useState(false)
+  const [isValidPresupuesto, setIsValidPresupuesto] = useState(false)
 
   const [modal , setModal] = useState(false)
   const [animarModal, setAnimarModal] = useState(false)
@@ -19,20 +19,21 @@ function App() {
         setAnimarModal(true)
       }, 500)
    }
+
   return (
       <div>
         <Header 
           presupuesto={presupuesto}
           setPresupuesto={setPresupuesto}
-          IsValidPresupuesto={IsValidPresupuesto}
+          isValidPresupuesto={isValidPresupuesto}
           setIsValidPresupuesto={setIsValidPresupuesto}
         />
 
-      {IsValidPresupuesto && (
+      {isValidPresupuesto && (
         <div className='nuevo-gasto'>
           <img
             src={IconoNuevoGasto}
-            alt="icono neuvo gasto"
+            alt="icono nuevo gasto"
             onClick={handleNuevoGasto}
         />
         </div>
