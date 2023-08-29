@@ -4,7 +4,7 @@ import CerrarBtn from "../img/cerrar.svg"
 
 
 
-const Modal = ({setModal, animarModal, setAnimarModal}) => {
+const Modal = ({setModal, animarModal, setAnimarModal, guardarGastos}) => {
 
     const [mensaje, setMensaje] = useState("")
     const [nombre, setNombre] = useState("")
@@ -23,10 +23,14 @@ const Modal = ({setModal, animarModal, setAnimarModal}) => {
 
         if([nombre, cantidad, categoria].includes("")){
             setMensaje("Todo los campos son obligatorios")
+            setTimeout(() => {
+                setMensaje("")
+            }, 3000)
             return;
         }
+
+        guardarGastos({nombre, cantidad, categoria})
     }
-    console.log(setMensaje)
     return (
         <div className="modal"> 
         <div className="cerrar-modal">
