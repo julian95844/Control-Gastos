@@ -44,6 +44,7 @@ function App() {
       //Actualizar
       const gastosActualizado = gastos.map(gastoState => gastoState.id === gasto.id ? gasto : gastoState)
       setGastos(gastosActualizado)
+      setGastoEditar({})
 
     }else{
       //Nuevo Gasto
@@ -57,6 +58,10 @@ function App() {
     setTimeout(() => {
         setModal(false)
     }, 500);
+   }
+   const eliminarGasto = id => {
+    const gastosActualizado = gastos.filter (gasto => gasto.id !== id)
+    setGastos(gastosActualizado)
    }
 
   return (
@@ -75,6 +80,7 @@ function App() {
             <ListadoGastos
               setGastoEditar={setGastoEditar}
               gastos={gastos}
+              eliminarGasto={eliminarGasto}
             />
           </main>
           <div className='nuevo-gasto'>
@@ -95,6 +101,7 @@ function App() {
         setAnimarModal={setAnimarModal}
         guardarGastos={guardarGastos}
         gastoEditar={gastoEditar}
+        setGastoEditar={setGastoEditar}
         />
       
       }
