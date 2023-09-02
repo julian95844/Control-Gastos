@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import Header from './components/Header'
+import Filtros from './components/Filtros'
 import ListadoGastos from './components/ListadoGastos'
 import Modal from './components/Modal'
 import { generarId } from "./helper"
@@ -22,6 +23,11 @@ function App() {
   const [animarModal, setAnimarModal] = useState(false)
 
   const [gastoEditar, setGastoEditar] = useState({})
+
+  const [filtro, setFiltro] = useState("")
+  const [gastosFiltrados, setGastosFiltrados] = useState([])
+
+
 
 
   useEffect(() => {
@@ -50,6 +56,13 @@ function App() {
       setIsValidPresupuesto(true)
     }
   }, [])
+
+  useEffect(() => {
+    if(filtro) {
+      const gastosFiltrados = gastos.filter ( gasto => gasto.categoria === filtro)
+      setGastosFiltrados(gastosFiltrados)
+    }
+  }, [filtro])
 
   const handleNuevoGasto = () =>{
       setModal(true)
@@ -99,10 +112,16 @@ function App() {
       {isValidPresupuesto && (
         <>
           <main>
+            <Filtros
+              filtro={filtro}
+              setFiltro={setFiltro}
+            />
             <ListadoGastos
               setGastoEditar={setGastoEditar}
               gastos={gastos}
               eliminarGasto={eliminarGasto}
+              gastosFiltrados={gastosFiltrados}
+              filtro={filtro}
             />
           </main>
           <div className='nuevo-gasto'>
